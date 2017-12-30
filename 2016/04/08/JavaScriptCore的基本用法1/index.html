@@ -171,7 +171,7 @@
     </div>
     
     <div class="post-body post-content">
-        <h3 id="JavaScriptCore简介"><a href="#JavaScriptCore简介" class="headerlink" title="JavaScriptCore简介"></a>JavaScriptCore简介</h3><p>iOS 7中加入了<code>JavaScriptCore</code>框架。该框架让<code>Objective-C</code>和<code>JavaScript</code>代码直接的交互变得更加的简单方便。而且使得js可以脱离webview与oc交互。<br><a id="more"></a><br>在项目中引入JavaScriptCore后，链到头文件中，除了大段的Copyright注释可以看到里面只要引入了5个文件，每个文件里都定义跟文件名对应的类：<br><img src="./JavaScriptCore的基本用法1/logo.png" alt="JavaScriptCore"></p>
+        <h3 id="JavaScriptCore简介"><a href="#JavaScriptCore简介" class="headerlink" title="JavaScriptCore简介"></a>JavaScriptCore简介</h3><p>iOS 7中加入了<code>JavaScriptCore</code>框架。该框架让<code>Objective-C</code>和<code>JavaScript</code>代码直接的交互变得更加的简单方便。而且使得js可以脱离webview与oc交互。<br><a id="more"></a><br>在项目中引入JavaScriptCore后，链到头文件中，除了大段的Copyright注释可以看到里面只要引入了5个文件，每个文件里都定义跟文件名对应的类：<br><img src="/2016/04/08/JavaScriptCore的基本用法1/logo.png" alt="JavaScriptCore"></p>
 <h4 id="JSContext和JSValue"><a href="#JSContext和JSValue" class="headerlink" title="JSContext和JSValue"></a>JSContext和JSValue</h4><h5 id="JSContext"><a href="#JSContext" class="headerlink" title="JSContext"></a>JSContext</h5><pre><code class="mm">//JSVirtualMachine为JavaScript的运行提供了底层资源，JSContext就为其提供着运行环境,该方法用来执行一段
 //JS代码，并且如果其中有方法、变量等信息都会被存储在其中以便在需要的时候使用。
 - (JSValue *)evaluateScript:(NSString *)script
@@ -180,7 +180,7 @@
 //对象然后调用前边的初始化方法
 - (id)initWithVirtualMachine:(JSVirtualMachine *)virtualMachine;
 </code></pre>
-<h5 id="JSValue"><a href="#JSValue" class="headerlink" title="JSValue"></a>JSValue</h5><p>则可以说是JavaScript和Object-C之间互换的桥梁，它提供了多种方法可以方便地把JavaScript数据类型转换成Objective-C，或者是转换过去。其一一对应方式可见下表：<br><img src="JavaScriptCore的基本用法1/javaScriptCoreObject.jpeg" alt="JavaScript对象和OC对象的对应关系"></p>
+<h5 id="JSValue"><a href="#JSValue" class="headerlink" title="JSValue"></a>JSValue</h5><p>则可以说是JavaScript和Object-C之间互换的桥梁，它提供了多种方法可以方便地把JavaScript数据类型转换成Objective-C，或者是转换过去。其一一对应方式可见下表：<br><img src="/2016/04/08/JavaScriptCore的基本用法1/javaScriptCoreObject.jpeg" alt="JavaScript对象和OC对象的对应关系"></p>
 <h3 id="基本类型的转换"><a href="#基本类型的转换" class="headerlink" title="基本类型的转换"></a>基本类型的转换</h3><pre><code class="mm">JSContext *context = [[JSContext alloc] init];
 JSValue *jsVal = [context evaluateScript:@&quot;2+7&quot;];
 int iVal = [jsVal toInt32];
