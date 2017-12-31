@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Hexo</title>
+  <title>Fingle</title>
   
-  
+  <subtitle>fingle</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://yoursite.com/"/>
+  <link href="https://chiseller.github.io/"/>
   <updated>2017-12-30T14:50:10.577Z</updated>
-  <id>http://yoursite.com/</id>
+  <id>https://chiseller.github.io/</id>
   
   <author>
-    <name>John Doe</name>
+    <name>fingle</name>
     
   </author>
   
@@ -18,8 +18,8 @@
   
   <entry>
     <title>Hello World</title>
-    <link href="http://yoursite.com/2017/12/30/hello-world/"/>
-    <id>http://yoursite.com/2017/12/30/hello-world/</id>
+    <link href="https://chiseller.github.io/2017/12/30/hello-world/"/>
+    <id>https://chiseller.github.io/2017/12/30/hello-world/</id>
     <published>2017-12-30T14:50:10.577Z</published>
     <updated>2017-12-30T14:50:10.577Z</updated>
     
@@ -39,8 +39,8 @@
   
   <entry>
     <title>Python学习笔记（一）</title>
-    <link href="http://yoursite.com/2017/07/19/Python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/"/>
-    <id>http://yoursite.com/2017/07/19/Python学习笔记（一）/</id>
+    <link href="https://chiseller.github.io/2017/07/19/Python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/"/>
+    <id>https://chiseller.github.io/2017/07/19/Python学习笔记（一）/</id>
     <published>2017-07-19T01:44:20.000Z</published>
     <updated>2017-12-13T13:09:24.946Z</updated>
     
@@ -59,14 +59,14 @@
     </summary>
     
     
-      <category term="Python" scheme="http://yoursite.com/tags/Python/"/>
+      <category term="Python" scheme="https://chiseller.github.io/tags/Python/"/>
     
   </entry>
   
   <entry>
     <title>Mac搭建PHP开发环境</title>
-    <link href="http://yoursite.com/2017/05/03/Mac%E6%90%AD%E5%BB%BAPHP%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/"/>
-    <id>http://yoursite.com/2017/05/03/Mac搭建PHP开发环境/</id>
+    <link href="https://chiseller.github.io/2017/05/03/Mac%E6%90%AD%E5%BB%BAPHP%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/"/>
+    <id>https://chiseller.github.io/2017/05/03/Mac搭建PHP开发环境/</id>
     <published>2017-05-03T01:05:57.000Z</published>
     <updated>2017-12-13T13:09:24.946Z</updated>
     
@@ -78,19 +78,19 @@
     
     </summary>
     
-      <category term="PHP" scheme="http://yoursite.com/categories/PHP/"/>
+      <category term="PHP" scheme="https://chiseller.github.io/categories/PHP/"/>
     
     
-      <category term="PHP" scheme="http://yoursite.com/tags/PHP/"/>
+      <category term="PHP" scheme="https://chiseller.github.io/tags/PHP/"/>
     
-      <category term="MAC" scheme="http://yoursite.com/tags/MAC/"/>
+      <category term="MAC" scheme="https://chiseller.github.io/tags/MAC/"/>
     
   </entry>
   
   <entry>
     <title>视频</title>
-    <link href="http://yoursite.com/2017/05/03/%E4%B8%89%E4%B8%AAmd/"/>
-    <id>http://yoursite.com/2017/05/03/三个md/</id>
+    <link href="https://chiseller.github.io/2017/05/03/%E4%B8%89%E4%B8%AAmd/"/>
+    <id>https://chiseller.github.io/2017/05/03/三个md/</id>
     <published>2017-05-03T01:05:57.000Z</published>
     <updated>2017-12-30T14:50:12.933Z</updated>
     
@@ -105,17 +105,17 @@
     
     </summary>
     
-      <category term="生活" scheme="http://yoursite.com/categories/%E7%94%9F%E6%B4%BB/"/>
+      <category term="生活" scheme="https://chiseller.github.io/categories/%E7%94%9F%E6%B4%BB/"/>
     
     
-      <category term="随笔" scheme="http://yoursite.com/tags/%E9%9A%8F%E7%AC%94/"/>
+      <category term="随笔" scheme="https://chiseller.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
   <entry>
     <title>雨后</title>
-    <link href="http://yoursite.com/2017/05/03/%E6%80%9D%E8%80%83/"/>
-    <id>http://yoursite.com/2017/05/03/思考/</id>
+    <link href="https://chiseller.github.io/2017/05/03/%E6%80%9D%E8%80%83/"/>
+    <id>https://chiseller.github.io/2017/05/03/思考/</id>
     <published>2017-05-03T01:05:57.000Z</published>
     <updated>2017-12-13T13:09:24.947Z</updated>
     
@@ -123,17 +123,17 @@
     
     </summary>
     
-      <category term="生活" scheme="http://yoursite.com/categories/%E7%94%9F%E6%B4%BB/"/>
+      <category term="生活" scheme="https://chiseller.github.io/categories/%E7%94%9F%E6%B4%BB/"/>
     
     
-      <category term="随笔" scheme="http://yoursite.com/tags/%E9%9A%8F%E7%AC%94/"/>
+      <category term="随笔" scheme="https://chiseller.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
   <entry>
     <title>在centos上搭建git服务器</title>
-    <link href="http://yoursite.com/2016/05/02/%E5%9C%A8centos%E4%B8%8A%E6%90%AD%E5%BB%BAgit%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
-    <id>http://yoursite.com/2016/05/02/在centos上搭建git服务器/</id>
+    <link href="https://chiseller.github.io/2016/05/02/%E5%9C%A8centos%E4%B8%8A%E6%90%AD%E5%BB%BAgit%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    <id>https://chiseller.github.io/2016/05/02/在centos上搭建git服务器/</id>
     <published>2016-05-02T06:35:57.000Z</published>
     <updated>2017-12-13T13:09:24.947Z</updated>
     
@@ -145,19 +145,19 @@
     
     </summary>
     
-      <category term="linux" scheme="http://yoursite.com/categories/linux/"/>
+      <category term="linux" scheme="https://chiseller.github.io/categories/linux/"/>
     
     
-      <category term="git" scheme="http://yoursite.com/tags/git/"/>
+      <category term="git" scheme="https://chiseller.github.io/tags/git/"/>
     
-      <category term="bash" scheme="http://yoursite.com/tags/bash/"/>
+      <category term="bash" scheme="https://chiseller.github.io/tags/bash/"/>
     
   </entry>
   
   <entry>
     <title>JavaScriptCore的基本用法（一）</title>
-    <link href="http://yoursite.com/2016/04/08/JavaScriptCore%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%951/"/>
-    <id>http://yoursite.com/2016/04/08/JavaScriptCore的基本用法1/</id>
+    <link href="https://chiseller.github.io/2016/04/08/JavaScriptCore%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%951/"/>
+    <id>https://chiseller.github.io/2016/04/08/JavaScriptCore的基本用法1/</id>
     <published>2016-04-07T16:00:00.000Z</published>
     <updated>2017-12-30T17:21:15.352Z</updated>
     
@@ -169,19 +169,19 @@
     
     </summary>
     
-      <category term="iOS" scheme="http://yoursite.com/categories/iOS/"/>
+      <category term="iOS" scheme="https://chiseller.github.io/categories/iOS/"/>
     
     
-      <category term="JavaScript" scheme="http://yoursite.com/tags/JavaScript/"/>
+      <category term="JavaScript" scheme="https://chiseller.github.io/tags/JavaScript/"/>
     
-      <category term="iOS" scheme="http://yoursite.com/tags/iOS/"/>
+      <category term="iOS" scheme="https://chiseller.github.io/tags/iOS/"/>
     
   </entry>
   
   <entry>
     <title>JavaScriptCore的基本用法（二）</title>
-    <link href="http://yoursite.com/2016/04/08/JavaScriptCore%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%952/"/>
-    <id>http://yoursite.com/2016/04/08/JavaScriptCore的基本用法2/</id>
+    <link href="https://chiseller.github.io/2016/04/08/JavaScriptCore%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%952/"/>
+    <id>https://chiseller.github.io/2016/04/08/JavaScriptCore的基本用法2/</id>
     <published>2016-04-07T16:00:00.000Z</published>
     <updated>2017-12-13T13:09:24.944Z</updated>
     
@@ -193,12 +193,12 @@
     
     </summary>
     
-      <category term="iOS" scheme="http://yoursite.com/categories/iOS/"/>
+      <category term="iOS" scheme="https://chiseller.github.io/categories/iOS/"/>
     
     
-      <category term="JavaScript" scheme="http://yoursite.com/tags/JavaScript/"/>
+      <category term="JavaScript" scheme="https://chiseller.github.io/tags/JavaScript/"/>
     
-      <category term="iOS" scheme="http://yoursite.com/tags/iOS/"/>
+      <category term="iOS" scheme="https://chiseller.github.io/tags/iOS/"/>
     
   </entry>
   
