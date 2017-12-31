@@ -1,6 +1,184 @@
-<!DOCTYPE HTML><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1"><meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="renderer" content="webkit|ie-comp|ie-stand"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no,email=no,adress=no"><script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.js"></script><script src="https://cdn.bootcss.com/prettify/r298/prettify.min.js"></script><meta name="browsermode" content="application"><meta name="screen-orientation" content="portrait"><link rel="dns-prefetch" href="http://yoursite.com"><meta name="robots" content="all"><meta name="google" content="all"><meta name="googlebot" content="all"><meta name="verify" content="all"><title>在centos上搭建git服务器 | Hexo</title><link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/plugins/prettify/themes/tomorrow-night-eighties.min.css?rev=b1e19d241ed60aa23d2e28a3ef61b126"><link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css?rev=3.3.4"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><link rel="stylesheet" href="/css/style.css?rev=89358aedd788833f9723c984d1692b7e"><div class="hide"><script src="https://s4.cnzz.com/z_stat.php?id=1263868967&web_id=1263868967" language="JavaScript"></script></div></head><!--[if lte IE 8]><style>
+<!DOCTYPE HTML>
+<html>
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.js"></script>
+   
+
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://yoursite.com">
+   
+   
+
+
+
+    </style>
+    <!--SEO-->
+
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+
+<title>在centos上搭建git服务器 | Hexo</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+
+   <link rel="stylesheet" href="/plugins/prettify/themes/tomorrow-night-eighties.min.css?rev=9.12.0">
+
+
+<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css?rev=3.3.4">
+<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+    <div class="hide">
+    	<script src="https://s4.cnzz.com/z_stat.php?id=1263868967&web_id=1263868967" language="JavaScript"></script>
+    </div>
+
+
+
+
+
+
+    
+    
+</head>
+
+
+<!--[if lte IE 8]>
+<style>
     html{ font-size: 1em }
-</style><![endif]--><!--[if lte IE 9]><div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div><![endif]--><body><header class="main-header"><div class="main-header-box"><a class="header-avatar" href="/" title=""><img src="/img/avatar.jpg" alt="logo头像"></a><div class="branding"><img src="/img/branding.png" alt="Snippet 博客主题"></div></div></header><nav class="main-navigation"><div class="container"><div class="row"><div class="col-sm-12"><div class="navbar-header"><span class="nav-toggle-button collapsed" data-toggle="collapse" data-target="#main-menu" id="mnav"><span class="sr-only">Toggle navigation</span><i class="fa fa-bars"></i></span></div><div class="collapse navbar-collapse" id="main-menu"><ul class="menu"><li role="presentation"><a href="/"><i class="fa fa-fw"></i>首页</a></li><li role="presentation"><a href="/categories/前端/"><i class="fa fa-fw"></i>前端</a></li><li role="presentation"><a href="/categories/后端/"><i class="fa fa-fw"></i>后端</a></li><li role="presentation"><a href="/categories/工具/"><i class="fa fa-fw"></i>工具</a></li><li role="presentation"><a href="/categories/资源/"><i class="fa fa-fw"></i>资源</a></li></ul></div></div></div></div></nav><section class="content-wrap"><div class="container"><div class="row"><main class="col-md-8 main-content m-post"><p id="process"></p><article class="post"><div class="post-head"><h1 id="在centos上搭建git服务器">在centos上搭建git服务器</h1><div class="post-meta"><span class="categories-meta fa-wrap"><i class="fa fa-folder-open-o"></i> <span>linux</span></span><span class="fa-wrap"><i class="fa fa-tags"></i> <span class="tags-meta">git</span></span><span class="fa-wrap"><i class="fa fa-clock-o"></i> <span class="date-meta">2016/05/02</span></span></div><p class="fa fa-exclamation-triangle warning">本文于<strong>608</strong>天之前发表，文中内容可能已经过时。</p></div><div class="post-body post-content"><p>刚开始搭建blog的时候打算用ftp的,可是期间遇到了各种问题,最后选择了git,其实现在想想遇到的大部分问题应该全是权限的问题,毕竟对linux的认识只能说算是刚刚起步,等有空的时候再去好好研究吧.<br><a id="more"></a></p><h3 id="vps-系统centos6-2-git版本1-7"><a href="#vps-系统centos6-2-git版本1-7" class="headerlink" title="vps(系统centos6.2,git版本1.7)"></a>vps(系统centos6.2,git版本1.7)</h3><hr><h4 id="安装git"><a href="#安装git" class="headerlink" title="安装git"></a>安装<code>git</code></h4><p>方法一.<code>yum install -y git</code>(最简单的方法)<br>方法二.下载<code>git</code>源码编译安装,需要安装编译工具(不做介绍)</p><h4 id="建立git用户-可选"><a href="#建立git用户-可选" class="headerlink" title="建立git用户(可选)"></a>建立<code>git</code>用户(可选)</h4><p>注意:有些系统在你安装<code>git</code>的时候,可能已经给你自动建立了<code>git</code>用户,因此你可以忽略这一步.</p><p>添加git用户</p><pre><code class="bash">//自动在home下建立git目录
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header"  >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="">
+            <img src="/img/avatar.jpg" alt="logo头像">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                 <img src="/img/branding.png" alt="Snippet 博客主题">  
+             
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only">Toggle navigation</span>
+                    <i class="fa fa-bars"></i>
+                    </span>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation"><a href="/"><i class="fa fa-fw "></i>首页</a>
+                            </li>
+                        
+                            <li role="presentation"><a href="/categories/前端/"><i class="fa fa-fw "></i>前端</a>
+                            </li>
+                        
+                            <li role="presentation"><a href="/categories/后端/"><i class="fa fa-fw "></i>后端</a>
+                            </li>
+                        
+                            <li role="presentation"><a href="/categories/工具/"><i class="fa fa-fw "></i>工具</a>
+                            </li>
+                        
+                            <li role="presentation"><a href="/categories/资源/"><i class="fa fa-fw "></i>资源</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="在centos上搭建git服务器">
+            
+            在centos上搭建git服务器
+            
+        </h1>
+        <div class="post-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <span>linux</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            git
+            
+        </span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">2016/05/02</span>
+    </span>
+</div>
+
+            
+            
+            <p class="fa fa-exclamation-triangle warning">
+                本文于<strong>608</strong>天之前发表，文中内容可能已经过时。
+            </p>
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <p>  刚开始搭建blog的时候打算用ftp的,可是期间遇到了各种问题,最后选择了git,其实现在想想遇到的大部分问题应该全是权限的问题,毕竟对linux的认识只能说算是刚刚起步,等有空的时候再去好好研究吧.<br>  <a id="more"></a></p>
+<h3 id="vps-系统centos6-2-git版本1-7"><a href="#vps-系统centos6-2-git版本1-7" class="headerlink" title="vps(系统centos6.2,git版本1.7)"></a>vps(系统centos6.2,git版本1.7)</h3><hr>
+<h4 id="安装git"><a href="#安装git" class="headerlink" title="安装git"></a>安装<code>git</code></h4><p>方法一.<code>yum install -y git</code>(最简单的方法)<br>方法二.下载<code>git</code>源码编译安装,需要安装编译工具(不做介绍)</p>
+<h4 id="建立git用户-可选"><a href="#建立git用户-可选" class="headerlink" title="建立git用户(可选)"></a>建立<code>git</code>用户(可选)</h4><p>注意:有些系统在你安装<code>git</code>的时候,可能已经给你自动建立了<code>git</code>用户,因此你可以忽略这一步.</p>
+<p>添加git用户</p>
+<pre><code class="bash">//自动在home下建立git目录
 useradd git
 //切换到/home下查看
 ls -al
@@ -8,17 +186,23 @@ ls -al
 //否则在以后设置免密码clone和push的时候会出现Permission denied error的错误.
 //修改git目录拥有者和所属群组为git
 chown -R git:git git
-</code></pre><p><img src="http://upload-images.jianshu.io/upload_images/1043168-62019d6ea599afa3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="F9D26F43-5BBE-4C51-8E72-8F94171EBD94.png"></p><h4 id="修改git用户的操作权限"><a href="#修改git用户的操作权限" class="headerlink" title="修改git用户的操作权限"></a>修改<code>git</code>用户的操作权限</h4><pre><code class="bash">vi /etc/passwd
+</code></pre>
+<p><img src="http://upload-images.jianshu.io/upload_images/1043168-62019d6ea599afa3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="F9D26F43-5BBE-4C51-8E72-8F94171EBD94.png"></p>
+<h4 id="修改git用户的操作权限"><a href="#修改git用户的操作权限" class="headerlink" title="修改git用户的操作权限"></a>修改<code>git</code>用户的操作权限</h4><pre><code class="bash">vi /etc/passwd
 //找到git用户的那一行,修改如下:不允许git用户的ssh登录
 git:x:500:500::/home/git:/usr/bin/git-shell
-</code></pre><h4 id="在服务器上建立裸版本库"><a href="#在服务器上建立裸版本库" class="headerlink" title="在服务器上建立裸版本库"></a>在服务器上建立裸版本库</h4><pre><code class="bash">mkdir /home/testgit
+</code></pre>
+<h4 id="在服务器上建立裸版本库"><a href="#在服务器上建立裸版本库" class="headerlink" title="在服务器上建立裸版本库"></a>在服务器上建立裸版本库</h4><pre><code class="bash">mkdir /home/testgit
 //这里 git init 是初始化空仓库的意思，而参数 --bare 是代表创建裸仓库，而参数 --bare 是代表创建裸仓库
 git init --bare sample.git
 注意:一定要查看testgit目录的拥有者(必须是git)和所属用户组(可以是git或者root),否则在以后设置免密码clone和push的时候会出现Permission denied error的错误.
-</code></pre><h4 id="clone远程仓库"><a href="#clone远程仓库" class="headerlink" title="clone远程仓库"></a><code>clone</code>远程仓库</h4><pre><code class="bash">cd Desktop
+</code></pre>
+<h4 id="clone远程仓库"><a href="#clone远程仓库" class="headerlink" title="clone远程仓库"></a><code>clone</code>远程仓库</h4><pre><code class="bash">cd Desktop
 git clone git@115.159.146.94:/home/testgit/sample.git 
 //这时候会让你输入git的密码,但是我们并没有设置git用户的密码
-</code></pre><h4 id="配置公钥进行免密码登录-clone和push"><a href="#配置公钥进行免密码登录-clone和push" class="headerlink" title="配置公钥进行免密码登录 clone和push"></a>配置公钥进行免密码登录 clone和push</h4><p>mac下的公钥和密钥在 ~/.ssh下</p><pre><code class="bash">cd ~/.ssh
+</code></pre>
+<h4 id="配置公钥进行免密码登录-clone和push"><a href="#配置公钥进行免密码登录-clone和push" class="headerlink" title="配置公钥进行免密码登录 clone和push"></a>配置公钥进行免密码登录 clone和push</h4><p>mac下的公钥和密钥在 ~/.ssh下</p>
+<pre><code class="bash">cd ~/.ssh
 ls -a
 //会看到如下文件(如果没有请查看如何生成公钥和密钥)
 id_rsa(密钥)   id_rsa.pub(公钥)  known_host
@@ -46,10 +230,16 @@ The key&#39;s randomart image is:
 | +. |
 +-----------------+
 //密钥生成成功
-</code></pre><p>在centos</p><pre><code class="bash">cd /home/git/.ssh
+</code></pre>
+<p>在centos</p>
+<pre><code class="bash">cd /home/git/.ssh
 //建立授权文件 authorized_keys,文件不存在则自己新建一个
 //将本地机器上的 id_rsa.pub(公钥)里面的复制一份粘贴到centos下/home/git/.ssh/authorized_keys
-</code></pre><p>authorized_keys文件看起来是这样的,上下两个免密码登录用户的公钥 ,上下分开.</p><p>###注意: .ssh 和 authorized_keys的拥有者必须是git,否则还是会有权限不足的问题<br><img src="http://upload-images.jianshu.io/upload_images/1043168-f05cb1189bd5290f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Paste_Image.png"></p><h4 id="同步代码到自己的博客站点目录"><a href="#同步代码到自己的博客站点目录" class="headerlink" title="同步代码到自己的博客站点目录"></a>同步代码到自己的博客站点目录</h4><p>比如说我们的博客有一点点的优化,但是push代码之后无法立即查看效果,这个地方我们就需要自动同步就派上用场了。自动同步功能用到的是 git 的钩子功能，</p><pre><code class="bash">cd /home/testgit/sample.git
+</code></pre>
+<p>authorized_keys文件看起来是这样的,上下两个免密码登录用户的公钥 ,上下分开.</p>
+<p>###注意:  .ssh  和 authorized_keys的拥有者必须是git,否则还是会有权限不足的问题<br><img src="http://upload-images.jianshu.io/upload_images/1043168-f05cb1189bd5290f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Paste_Image.png"></p>
+<h4 id="同步代码到自己的博客站点目录"><a href="#同步代码到自己的博客站点目录" class="headerlink" title="同步代码到自己的博客站点目录"></a>同步代码到自己的博客站点目录</h4><p>比如说我们的博客有一点点的优化,但是push代码之后无法立即查看效果,这个地方我们就需要自动同步就派上用场了。自动同步功能用到的是 git 的钩子功能，</p>
+<pre><code class="bash">cd /home/testgit/sample.git
 cd hooks
 //这里我们创建post-receive文件
 vi post-receive
@@ -60,5 +250,237 @@ git --work-tree=/home/www checkout -f
 gitchown git:git post-receive
 //由于该文件其实就是一个shell文件，我们还应该为其设置可执行权限
 chmod +x post-receive
-</code></pre><p>此时clone自己的blog站点,修改一下网站的名称,push道git服务器,刷新网站首页,是不是发现自己blog的名称变了!</p><h4 id="最后再记录一下-配置ssh-免密码登录-so-easy"><a href="#最后再记录一下-配置ssh-免密码登录-so-easy" class="headerlink" title="最后再记录一下,配置ssh 免密码登录(so easy)"></a>最后再记录一下,配置ssh 免密码登录(so easy)</h4><p>复制自己主机下的公钥内容<br>在自己的vps下</p><pre><code class="bash">vi  /root/.ssh/ authorized_keys
-</code></pre><p>//复制密钥内容进去,好了,现在ssh也可以免密码登录了</p></div><div class="post-footer"><div>转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">Fingle</a></div><div></div></div></article><div class="article-nav prev-next-wrap clearfix"><a href="/2017/05/03/思考/" class="pre-post btn btn-default"><i class="fa fa-angle-left fa-fw"></i> 上一篇</a> <a href="/2016/04/08/JavaScriptCore的基本用法1/" class="next-post btn btn-default">下一篇<i class="fa fa-angle-right fa-fw"></i></a></div><div id="comments"><div id="disqus_thread"></div><script>var disqus_shortname="mleaves",disqus_config=function(){this.page.url="http://yoursite.com/2016/05/02/在centos上搭建git服务器/",this.page.identifier="2016/05/02/在centos上搭建git服务器/"};!function(){var t=document,e=t.createElement("script");e.src="https://"+disqus_shortname+".disqus.com/embed.js",e.setAttribute("data-timestamp",+new Date),(t.head||t.body).appendChild(e)}()</script></div></main><aside class="col-md-4 sidebar"><div class="widget"><h3 class="title">搜索</h3><div id="search-form"><div id="result-mask" class="hide"></div><div class="search-area"><input id="search-key" type="search" autocomplete="off" placeholder="搜点什么呢?"> <button type="button" class="search-form-submit" id="search-local">站内搜索</button></div><div id="result-wrap" class="hide"><div id="search-result"></div></div><div class="hide"><template id="search-tpl"><div class="item"><a href="/{path}" title="{title}"><div class="title">{title}</div><div class="content">{content}</div></a></div></template></div></div></div><div class="widget notification"><h3 class="title">网站公告</h3><div><p>主题SnippetX v1.0版本已经上线！欢迎更新~<br>主题下载：<a href="https://github.com/chiseller/hexo-theme-snippetx" title="fork me" target="_blank">SnippetX主题</a><br></p><hr>接受贡献，包括不限于提交问题与需求，修复代码。欢迎Pull Request<br>支持主题：<a href="https://github.com/chiseller/hexo-theme-snippetx/stargazers">Star一下</a><p></p></div></div><div class="widget"><h3 class="title">社交</h3><div class="content social"><a href="//github.com/chiseller" class="bg-github" rel="external nofollow" title="Github" target="_blank"><i class="github fa fa-github"></i></a><a href="/" class="bg-twitter" rel="external nofollow" title="Twitter" target="_blank"><i class="twitter fa fa-twitter"></i></a><a href="/" class="bg-wechat" rel="external nofollow" title="微信" target="_blank"><i class="wechat fa fa-wechat"></i></a><a href="/" class="bg-weibo" rel="external nofollow" title="微博" target="_blank"><i class="weibo fa fa-weibo"></i></a><a href="/atom.xml" class="bg-feed" rel="external nofollow" title="RSS" target="_blank"><i class="feed fa fa-feed"></i></a></div></div><div class="widget"><h3 class="title">分类</h3><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/"><i class="fa" aria-hidden="true">PHP</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/"><i class="fa" aria-hidden="true">iOS</i></a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/"><i class="fa" aria-hidden="true">linux</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/"><i class="fa" aria-hidden="true">生活</i></a><span class="category-list-count">2</span></li></ul></div><div class="widget"><h3 class="title">归档</h3><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/"><i class="fa" aria-hidden="true">十二月 2017</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/"><i class="fa" aria-hidden="true">七月 2017</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/"><i class="fa" aria-hidden="true">五月 2017</i></a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/"><i class="fa" aria-hidden="true">五月 2016</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/"><i class="fa" aria-hidden="true">四月 2016</i></a><span class="archive-list-count">2</span></li></ul></div><div class="widget"><h3 class="title">标签云</h3><div class="content tag-cloud"><a href="/tags/JavaScript/" style="font-size:20px">JavaScript</a> <a href="/tags/MAC/" style="font-size:10px">MAC</a> <a href="/tags/PHP/" style="font-size:10px">PHP</a> <a href="/tags/Python/" style="font-size:10px">Python</a> <a href="/tags/bash/" style="font-size:10px">bash</a> <a href="/tags/git/" style="font-size:10px">git</a> <a href="/tags/iOS/" style="font-size:20px">iOS</a> <a href="/tags/随笔/" style="font-size:20px">随笔</a></div></div><div class="widget"><h3 class="title">友链</h3><div class="content friends-link"><a href="http://www.chiseller.com" class="fa" target="_blank">个人博客</a></div></div></aside></div></div></section><footer class="main-footer"><div class="container"><div class="row"></div></div></footer><a id="back-to-top" class="hide"><i class="fa fa-chevron-up"></i></a><div class="copyright"><div class="container"><div class="row"><div class="col-sm-12"><span>Copyright &copy; 2017</span> | <span>Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a></span> | <span>Theme by <a href="//github.com/chiseller/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">SnippetX</a></span></div></div></div></div><script>$(window).load(function(){$("pre").addClass("prettyprint linenums").attr("style","overflow:auto;"),prettyPrint()})</script><script src="/js/search.js?rev=52da5db01a69a82604a15b2a909c5e9c"></script><script src="/js/app.js?rev=11fe312c4086817dffd7f6722a4cea29"></script></body></html>
+</code></pre>
+<p>此时clone自己的blog站点,修改一下网站的名称,push道git服务器,刷新网站首页,是不是发现自己blog的名称变了!</p>
+<h4 id="最后再记录一下-配置ssh-免密码登录-so-easy"><a href="#最后再记录一下-配置ssh-免密码登录-so-easy" class="headerlink" title="最后再记录一下,配置ssh 免密码登录(so easy)"></a>最后再记录一下,配置ssh 免密码登录(so easy)</h4><p>复制自己主机下的公钥内容<br>在自己的vps下</p>
+<pre><code class="bash">vi  /root/.ssh/ authorized_keys
+</code></pre>
+<p>//复制密钥内容进去,好了,现在ssh也可以免密码登录了</p>
+
+    </div>
+
+    <div class="post-footer">   
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">Fingle</a>
+            
+        </div>
+        <div>
+            
+        </div>  
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2017/05/03/思考/" class="pre-post btn btn-default"><i class="fa fa-angle-left fa-fw"></i>上一篇</a>
+    
+    
+        <a href="/2016/04/08/JavaScriptCore的基本用法1/" class="next-post btn btn-default">下一篇<i class="fa fa-angle-right fa-fw"></i></a>
+    
+</div>
+
+
+    <div id="comments">
+        
+    <div id="disqus_thread"></div>
+    <script>
+        var disqus_shortname = 'mleaves';
+        var disqus_config = function () {
+            this.page.url = 'http://yoursite.com/2016/05/02/在centos上搭建git服务器/'; 
+            this.page.identifier = '2016/05/02/在centos上搭建git服务器/'; 
+        };
+
+        (function() { 
+            var d = document, s = d.createElement('script');
+            s.src = 'https://'+ disqus_shortname +'.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+    
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+                </main>
+                
+    <aside class="col-md-4 sidebar">
+        
+        
+    <div class="widget">    
+        <h3 class="title">搜索</h3>
+        <div id="search-form">
+            <div id="result-mask" class="hide"></div>
+            <div class="search-area">
+                
+                    <input id="search-key" type="search" autocomplete="off" placeholder="搜点什么呢?">
+                    <button type="button" class="search-form-submit" id="search-local">站内搜索</button>
+                
+                
+            </div>
+            <div id="result-wrap" class="hide">
+                <div id="search-result"></div>
+            </div>
+            <div class="hide">
+                <template id="search-tpl">
+                    <div class="item">
+                        <a href="/{path}" title="{title}">
+                            <div class="title">{title}</div>
+                            <div class="content">{content}</div>
+                        </a>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </div>
+
+        
+        
+    <div class="widget notification">
+        <h3 class="title">网站公告</h3>
+        <div>
+            <p>主题SnippetX v1.0版本已经上线！欢迎更新~ <br/>
+主题下载：<a href="https://github.com/chiseller/hexo-theme-snippetx" title="fork me" target="_blank">SnippetX主题</a> <br/>
+<hr/>接受贡献，包括不限于提交问题与需求，修复代码。欢迎Pull Request<br/>支持主题：<a href="https://github.com/chiseller/hexo-theme-snippetx/stargazers">Star一下</a>
+</p>
+        </div>
+    </div>
+
+        
+        
+    <div class="widget">
+      <h3 class="title">社交</h3> 
+        <div class="content social">
+            
+	            <a href="//github.com/chiseller" class = "bg-github" rel="external nofollow" title="Github" target="_blank">
+			    	<i class="github fa fa-github"></i>
+			    </a>
+            
+	            <a href="/" class = "bg-twitter" rel="external nofollow" title="Twitter" target="_blank">
+			    	<i class="twitter fa fa-twitter"></i>
+			    </a>
+            
+	            <a href="/" class = "bg-wechat" rel="external nofollow" title="微信" target="_blank">
+			    	<i class="wechat fa fa-wechat"></i>
+			    </a>
+            
+	            <a href="/" class = "bg-weibo" rel="external nofollow" title="微博" target="_blank">
+			    	<i class="weibo fa fa-weibo"></i>
+			    </a>
+            
+	            <a href="/atom.xml" class = "bg-feed" rel="external nofollow" title="RSS" target="_blank">
+			    	<i class="feed fa fa-feed"></i>
+			    </a>
+            
+        </div>
+    </div>
+
+
+        
+        
+    <div class="widget">
+        <h3 class="title">分类</h3>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/"><i class="fa" aria-hidden="true">PHP</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/"><i class="fa" aria-hidden="true">iOS</i></a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/"><i class="fa" aria-hidden="true">linux</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/"><i class="fa" aria-hidden="true">生活</i></a><span class="category-list-count">2</span></li></ul>
+    </div>
+
+
+        
+        
+    <div class="widget">
+      <h3 class="title">归档</h3>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/"><i class="fa" aria-hidden="true">十二月 2017</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/"><i class="fa" aria-hidden="true">七月 2017</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/"><i class="fa" aria-hidden="true">五月 2017</i></a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/"><i class="fa" aria-hidden="true">五月 2016</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/"><i class="fa" aria-hidden="true">四月 2016</i></a><span class="archive-list-count">2</span></li></ul>
+    </div>
+
+
+        
+        
+  <div class="widget">
+    <h3 class="title">标签云</h3>
+    <div class="content tag-cloud">
+        <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/MAC/" style="font-size: 10px;">MAC</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/bash/" style="font-size: 10px;">bash</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/tags/随笔/" style="font-size: 20px;">随笔</a>
+    </div>
+  </div>
+
+
+        
+        
+    <div class="widget">
+        <h3 class="title">友链</h3>
+        <div class="content friends-link">
+        
+            <a href="http://www.chiseller.com" class="fa" target="_blank">个人博客</a>
+        
+        </div>
+    </div>
+
+
+        
+    </aside>
+
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12"> 
+                <span>Copyright &copy; 2017
+                </span> | 
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> | 
+                <span>
+                    Theme by <a href="//github.com/chiseller/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">SnippetX</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+	<!--prettify代码高亮脚本引入-->
+  <script src="/plugins/prettify/js/prettify.js"></script>
+  <script>
+     $(window).load(function(){
+		$('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+ 		prettyPrint();
+		})
+  </script>
+
+
+
+	<script src="/js/search.js?rev=@@hash"></script>
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+
+
+
+
+</body>
+</html>
