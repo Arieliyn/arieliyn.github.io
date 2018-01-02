@@ -42,7 +42,7 @@ imagePick.allowsEditing = NO;
 
 
 }
-</code></pre><h3 id="二、AVCaptureSession-amp-AVCaptureMovieFileOutput"><a href="#二、AVCaptureSession-amp-AVCaptureMovieFileOutput" class="headerlink" title="二、AVCaptureSession &amp; AVCaptureMovieFileOutput"></a>二、AVCaptureSession &amp; AVCaptureMovieFileOutput</h3><p>要获取摄像机捕捉到的视频或者麦克风捕捉到的音频，我们需要对象表示inputs和outputs，并使用AVCaptureSession的实例来协调它们之间的数据流。</p><blockquote><ol><li>AVCaptureDevice 对象，表示声音或者视频采集设备，对应摄像头和麦克风。</li><li>AVCaptureInput的子类，配置输入端口。</li><li>AVCaptureOutput的子类， 输出采集到的视频或者图像。</li><li>AVCaptureSession来协调从输入到输出的数据流。</li></ol></blockquote><h5 id="步骤一：-创建AVCaptureDevice-对象"><a href="#步骤一：-创建AVCaptureDevice-对象" class="headerlink" title="步骤一： 创建AVCaptureDevice 对象"></a>步骤一： 创建AVCaptureDevice 对象</h5><p>因为我们需要录制视频和音频所以我们需要视频的AVCaptureDevice和音频的AVCaptureDevice。</p><pre><code class="objc">//我们同时获取了前摄像头和后摄像头因为等会我们要手动切换
+</code></pre><h3 id="二、AVCaptureSession-amp-AVCaptureMovieFileOutput"><a href="#二、AVCaptureSession-amp-AVCaptureMovieFileOutput" class="headerlink" title="二、AVCaptureSession &amp; AVCaptureMovieFileOutput"></a>二、<code>AVCaptureSession</code> &amp; <code>AVCaptureMovieFileOutput</code></h3><p>要获取摄像机捕捉到的视频或者麦克风捕捉到的音频，我们需要对象表示<code>inputs</code>和<code>outputs</code>，并使用<code>AVCaptureSession</code>的实例来协调它们之间的数据流。</p><blockquote><ol><li>AVCaptureDevice 对象，表示声音或者视频采集设备，对应摄像头和麦克风。</li><li>AVCaptureInput的子类，配置输入端口。</li><li>AVCaptureOutput的子类， 输出采集到的视频或者图像。</li><li>AVCaptureSession来协调从输入到输出的数据流。</li></ol></blockquote><h5 id="步骤一：-创建AVCaptureDevice-对象"><a href="#步骤一：-创建AVCaptureDevice-对象" class="headerlink" title="步骤一： 创建AVCaptureDevice 对象"></a>步骤一： 创建<code>AVCaptureDevice</code> 对象</h5><p>因为我们需要录制视频和音频所以我们需要视频的AVCaptureDevice和音频的AVCaptureDevice。</p><pre><code class="objc">//我们同时获取了前摄像头和后摄像头因为等会我们要手动切换
 //获取音频device
 -(AVCaptureDevice *)audioDevice{
     if (!_audioDevice) {
@@ -75,7 +75,7 @@ imagePick.allowsEditing = NO;
     }
     return _frontVideoDevice;
 }
-</code></pre><h5 id="步骤二、配置inputs"><a href="#步骤二、配置inputs" class="headerlink" title="步骤二、配置inputs"></a>步骤二、配置inputs</h5><p>每个AVCaptureDevice对应一个input。</p><pre><code class="objc">//audio input
+</code></pre><h5 id="步骤二、配置inputs"><a href="#步骤二、配置inputs" class="headerlink" title="步骤二、配置inputs"></a>步骤二、配置inputs</h5><p>每个<code>AVCaptureDevice</code>对应一个<code>input</code>。</p><pre><code class="objc">//audio input
 - (AVCaptureDeviceInput *)audioInput{
     if (!_audioInput) {
         NSError *error = nil;
@@ -93,7 +93,7 @@ imagePick.allowsEditing = NO;
     }
     return _videoInput;
 }
-</code></pre><h5 id="步骤三-写入文件"><a href="#步骤三-写入文件" class="headerlink" title="步骤三: 写入文件"></a>步骤三: 写入文件</h5><p>Output有四种：</p><blockquote><p><code>AVCaptureMovieFileOutput</code> 写入文件<br><code>AVCaptureVideoDataOutput</code> 加工视频输出<br><code>AVCaptureAudioDataOutput</code> 加工音频输出<br><code>AVCaptureStillImageOutput</code> 捕捉输出的图像</p></blockquote><p>写入文件只需要AVCaptureMovieFileOutput就可以了。</p><pre><code class="objc">// output
+</code></pre><h5 id="步骤三-写入文件"><a href="#步骤三-写入文件" class="headerlink" title="步骤三: 写入文件"></a>步骤三: 写入文件</h5><p>Output有四种：</p><blockquote><p><code>AVCaptureMovieFileOutput</code> 写入文件<br><code>AVCaptureVideoDataOutput</code> 加工视频输出<br><code>AVCaptureAudioDataOutput</code> 加工音频输出<br><code>AVCaptureStillImageOutput</code> 捕捉输出的图像</p></blockquote><p>写入文件只需要<code>AVCaptureMovieFileOutput</code>就可以了。</p><pre><code class="objc">// output
 - (AVCaptureMovieFileOutput  *)movieFileOutput{
     if (!_movieFileOutput) {
         _movieFileOutput = [[AVCaptureMovieFileOutput  alloc]init];
@@ -111,7 +111,7 @@ imagePick.allowsEditing = NO;
     }
     return _movieFileOutput;
 }
-</code></pre><p>#####步骤四： 获取AVCaptureSession</p><pre><code class="objc">- (AVCaptureSession *)session{
+</code></pre><h5 id="步骤四：-获取AVCaptureSession"><a href="#步骤四：-获取AVCaptureSession" class="headerlink" title="步骤四： 获取AVCaptureSession"></a>步骤四： 获取<code>AVCaptureSession</code></h5><pre><code class="objc">- (AVCaptureSession *)session{
     if (!_session) {
         _session = [[AVCaptureSession alloc]init];
         // 设置视频质量
@@ -133,7 +133,7 @@ imagePick.allowsEditing = NO;
     }
     return _session;
 }
-</code></pre><p>这个地方需要注意下，每次我们更改AVCaptureSession的属性的时候我们都需要：</p><pre><code class="objc">[session beginConfiguration];
+</code></pre><p>这个地方需要注意下，每次我们更改<code>AVCaptureSession</code>的属性的时候我们都需要：</p><pre><code class="objc">[session beginConfiguration];
 // Remove an existing capture device.
 // Add a new capture device.
 // Reset the preset.
@@ -147,7 +147,7 @@ imagePick.allowsEditing = NO;
     }
     return _previewLayer;
 }
-</code></pre><p>在控制器里面调用session的startRuning方法，这个时候只是采集到了视频显示在了预览层上面，并未开始录制。</p><pre><code class="objc">- (void)viewDidLoad {
+</code></pre><p>在控制器里面调用<code>session</code>的<code>startRuning</code>方法，这个时候只是采集到了视频显示在了预览层上面，并未开始录制。</p><pre><code class="objc">- (void)viewDidLoad {
     [super viewDidLoad];
     self.recodingView.delegate = self;
     [self.view.layer insertSublayer:self.previewLayer atIndex:0];
@@ -155,7 +155,7 @@ imagePick.allowsEditing = NO;
 
 
 }
-</code></pre><p>点击录制视频,recodingView是我自定义的控件。</p><pre><code class="objc">-(void)writePath{
+</code></pre><p>点击录制视频,<code>recodingView</code>是我自定义的控件。</p><pre><code class="objc">-(void)writePath{
     if ([self.movieFileOutput isRecording] ) {
         [self.movieFileOutput stopRecording];
         return;
@@ -180,7 +180,7 @@ didFinishRecordingToOutputFileAtURL:(NSURL *)outputFileURL
         }
     }
 
-//   有error的话 有可能也是录制成功了
+//   有`error`的话 有可能也是录制成功了
     /*
     AVErrorMaximumDurationReached  时间限制
     AVErrorMaximumFileSizeReached  文件大小限制

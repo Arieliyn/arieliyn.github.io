@@ -7,7 +7,7 @@
 //进行初始化，那么在其内部会自动创建一个新的JSVirtualMachine
 //对象然后调用前边的初始化方法
 - (id)initWithVirtualMachine:(JSVirtualMachine *)virtualMachine;
-</code></pre><h5 id="JSValue"><a href="#JSValue" class="headerlink" title="JSValue"></a>JSValue</h5><p>则可以说是JavaScript和Object-C之间互换的桥梁，它提供了多种方法可以方便地把JavaScript数据类型转换成Objective-C，或者是转换过去。其一一对应方式可见下表：<br><img src="/2016/04/08/JavaScriptCore的基本用法1/javaScriptCoreObject.jpeg" alt="JavaScript对象和OC对象的对应关系"></p><h3 id="基本类型的转换"><a href="#基本类型的转换" class="headerlink" title="基本类型的转换"></a>基本类型的转换</h3><pre><code class="mm">JSContext *context = [[JSContext alloc] init];
+</code></pre><h5 id="JSValue"><a href="#JSValue" class="headerlink" title="JSValue"></a>JSValue</h5><p>则可以说是JavaScript和Object-C之间互换的桥梁，它提供了多种方法可以方便地把JavaScript数据类型转换成Objective-C，或者是转换过去。其一一对应方式可见下表：<br><img src="/2016/04/08/JavaScriptCore的基本用法1/javaScriptCoreObject.jpeg" alt="JavaScript对象和OC对象的对应关系"></p><h3 id="基本类型的转换"><a href="#基本类型的转换" class="headerlink" title="基本类型的转换"></a>基本类型的转换</h3><pre><code class="objc">JSContext *context = [[JSContext alloc] init];
 JSValue *jsVal = [context evaluateScript:@&quot;2+7&quot;];
 int iVal = [jsVal toInt32];
 NSLog(@&quot;JSValue: %@, int: %d&quot;, jsVal, iVal);
