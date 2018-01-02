@@ -111,9 +111,9 @@
       <category term="linux" scheme="https://chiseller.github.io/categories/linux/"/>
     
     
-      <category term="git" scheme="https://chiseller.github.io/tags/git/"/>
-    
       <category term="bash" scheme="https://chiseller.github.io/tags/bash/"/>
+    
+      <category term="git" scheme="https://chiseller.github.io/tags/git/"/>
     
   </entry>
   
